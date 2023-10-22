@@ -21,8 +21,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @OneToOne(mappedBy = "user")
+    private Lista_Compra lista_compra;
+
+    @OneToMany(mappedBy = "user")
+    private List<Factura> factura;
+
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comentarios> comentarios;
 
     @Column(nullable = false)
     private String password;
