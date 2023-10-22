@@ -8,6 +8,7 @@ public class SirvBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SirvBackendApplication.class, args);
+
     }
 
 }

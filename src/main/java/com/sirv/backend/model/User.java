@@ -22,7 +22,16 @@ public class User {
     private Integer id;
 
     @OneToMany(mappedBy = "user")
+    private List<Lista_Compra> lista_compra;
+
+    @OneToMany(mappedBy = "user")
+    private List<Factura> factura;
+
+    @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comentarios> comentarios;
 
     @Column(nullable = false)
     private String password;
