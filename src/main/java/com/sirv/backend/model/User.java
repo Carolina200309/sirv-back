@@ -21,8 +21,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy = "user")
-    private List<Lista_Compra> lista_compra;
+    @OneToOne(mappedBy = "user")
+    private Lista_Compra lista_compra;
 
     @OneToMany(mappedBy = "user")
     private List<Factura> factura;

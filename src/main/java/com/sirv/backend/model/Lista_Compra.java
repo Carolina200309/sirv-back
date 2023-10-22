@@ -23,7 +23,7 @@ public class Lista_Compra
     private Integer id_lista;
 
 
-    @ManyToOne(optional = false)
+    @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private User user;
 
