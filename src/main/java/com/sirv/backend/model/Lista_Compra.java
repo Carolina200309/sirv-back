@@ -32,7 +32,7 @@ public class Lista_Compra
     @JoinTable(name = "producto_lista_compra",
             joinColumns = @JoinColumn(name = "id_lista"),
             inverseJoinColumns = @JoinColumn(name = "id_producto"))
-    private List<Productos> productos;
+    private List<Producto> productos;
 
 
     @Column(name = "id_producto",nullable = false)

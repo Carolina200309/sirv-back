@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "productos")
-public class Productos
+public class Producto
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +24,8 @@ public class Productos
     @ManyToMany(mappedBy = "productos")
     private List<Lista_Compra> lista_compra;
 
-    @OneToMany(mappedBy = "productos")
-    private List<Comentarios> comentarios;
+    @OneToMany(mappedBy = "producto")
+    private List<Comentario> comentarios;
 
     @Column(name = "nombre_producto",nullable = false)
     private String nombre_producto;
@@ -36,5 +35,12 @@ public class Productos
 
     @Column(name = "descripcion",nullable = false)
     private String descripcion;
+
+    @Enumerated(EnumType.STRING)
+    private Color color;
+
+    public enum Color {
+        NEGRO, BLANCO, NARANJA, GRIS;
+    }
 
 }

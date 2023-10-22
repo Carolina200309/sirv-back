@@ -15,35 +15,27 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comentarios")
 
-public class Comentarios {
+public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_comentario",nullable = false)
-    private Integer id_comentario;
+    private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_producto")
-    private Productos productos;
+    private Producto producto;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario")
     private User user;
 
-    @Column(name = "id_producto", insertable = false, updatable = false)//cambio
-    //@Column(name = "id_producto",nullable = false)
-    private Integer id_producto;
-
-    @Column(name = "id_usuario",insertable=false, updatable=false)//cambio
-   // @Column(name = "id_usuario",nullable = false)
-    private Integer id_usuario;
     @Column(name = "texto",nullable = false)
     private String texto;
 
     @Column(name = "fecha",nullable = false)
     private LocalDateTime fecha;
 
-    @Column(name = "calificacion",nullable = false)
-    private String calificacion;
+    @Column(name = "calificacion")
+    private Integer calificacion;
 
 }
