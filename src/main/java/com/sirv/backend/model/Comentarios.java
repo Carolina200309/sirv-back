@@ -19,6 +19,8 @@ public class Comentarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_comentario",nullable = false)
+    private Integer id_comentario;
 
     @ManyToOne
     @JoinColumn(name = "id_producto")
@@ -28,15 +30,13 @@ public class Comentarios {
     @JoinColumn(name = "id_usuario")
     private User user;
 
-
-    @Column(name = "id_comentario",nullable = false)
-    private Integer id_comentario;
-
-    @Column(name = "id_producto",nullable = false)
+    @Column(name = "id_producto", insertable = false, updatable = false)//cambio
+    //@Column(name = "id_producto",nullable = false)
     private Integer id_producto;
 
-    @Column(name = "id_usuario",nullable = false)
-    private Integer id;
+    @Column(name = "id_usuario",insertable=false, updatable=false)//cambio
+   // @Column(name = "id_usuario",nullable = false)
+    private Integer id_usuario;
     @Column(name = "texto",nullable = false)
     private String texto;
 

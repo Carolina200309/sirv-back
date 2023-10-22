@@ -19,19 +19,21 @@ public class Lista_Compra
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_lista",nullable = false)
+    private Integer id_lista;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
     private User user;
 
+    //create INDEX idx_id_lista ON lista_compra (id_lista);
     @ManyToMany
     @JoinTable(name = "producto_lista_compra",
             joinColumns = @JoinColumn(name = "id_lista"),
             inverseJoinColumns = @JoinColumn(name = "id_producto"))
     private List<Productos> productos;
 
-    @Column(name = "id_lista",nullable = false)
-    private Integer id_lista;
 
     @Column(name = "id_producto",nullable = false)
     private Integer id_producto;

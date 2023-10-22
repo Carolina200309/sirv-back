@@ -19,15 +19,14 @@ public class Productos
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_producto",nullable = false)
+    private Integer id_producto;
 
     @ManyToMany(mappedBy = "productos")
     private List<Lista_Compra> lista_compra;
 
     @OneToMany(mappedBy = "productos")
     private List<Comentarios> comentarios;
-
-    @Column(name = "id_producto",nullable = false)
-    private Integer id_producto;
 
     @Column(name = "nombre_producto",nullable = false)
     private String nombre_producto;

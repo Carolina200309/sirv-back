@@ -20,12 +20,13 @@ import java.util.Date;
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_factura",nullable = false)
+    private Integer id_factura;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario")
     private User user;
-    @Column(name = "id_factura",nullable = false)
-    private Integer id_factura;
+
 
     @Column(name = "total_cancelado",nullable = false)
     private Float total_cancelado;
