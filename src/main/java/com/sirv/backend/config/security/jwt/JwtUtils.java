@@ -1,4 +1,4 @@
-package com.sirv.backend.config.jwt;
+package com.sirv.backend.config.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

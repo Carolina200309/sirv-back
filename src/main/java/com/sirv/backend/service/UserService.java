@@ -1,8 +1,8 @@
 package com.sirv.backend.service;
 
 import com.sirv.backend.EndUserException;
-import com.sirv.backend.config.jwt.JwtUtils;
-import com.sirv.backend.dto.UserDTO;
+import com.sirv.backend.config.security.jwt.JwtUtils;
+import com.sirv.backend.dto.model.UserDTO;
 import com.sirv.backend.dto.request.LoginRequest;
 import com.sirv.backend.dto.request.RegisterRequest;
 import com.sirv.backend.model.User;
@@ -12,9 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +19,7 @@ import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -46,7 +43,7 @@ public class UserService implements UserDetailsService {
         return  new UserDTO(user.getId(),user.getNombre(), user.getDate_registered(),user.getAddress(),user.getTelephone());
     }
 
-    public User createUser(RegisterRequest request) throws EndUserException {
+    public User createUser(RegisterRequest request, boolean isAdmin) throws EndUserException {
         if (userRepository.existsByNombre(request.nombre())) {
             throw new EndUserException("Ya existe un usuario con ese nombre");
         }
@@ -57,6 +54,8 @@ public class UserService implements UserDetailsService {
         user.setTelephone(request.telephone());
         user.setDate_registered(LocalDate.now());
         user.setPassword(passwordEncoder.encode(request.password()));
+
+        if (isAdmin) user.setTipo(User.Tipo.ADMINISTRADOR);
 
         userRepository.save(user);
 
@@ -77,11 +76,6 @@ public class UserService implements UserDetailsService {
     }
 
     public String registerUser(RegisterRequest request) throws EndUserException {
-        return jwtUtils.generateAccessToken(createUser(request));
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByNombre(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return jwtUtils.generateAccessToken(createUser(request, false));
     }
 }

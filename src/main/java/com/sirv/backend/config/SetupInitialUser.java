@@ -20,7 +20,7 @@ public class SetupInitialUser implements ApplicationListener<ContextRefreshedEve
         if (alreadySetup) return;
 
         try {
-            userService.createUser(new RegisterRequest("admin", "333", "Cl 1", "admin"));
+            userService.createUser(new RegisterRequest("admin", "333", "Cl 1", "admin"), true);
         } catch (EndUserException ignored) {}
 
         alreadySetup = true;

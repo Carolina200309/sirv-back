@@ -1,4 +1,4 @@
-package com.sirv.backend.dto;
+package com.sirv.backend.dto.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -18,8 +18,8 @@ public class Producto
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto",nullable = false)
-    private Integer id_producto;
+    @Column(nullable = false)
+    private Integer id;
 
     @ManyToMany(mappedBy = "productos")
     private List<Lista_Compra> lista_compra;
@@ -27,8 +27,8 @@ public class Producto
     @OneToMany(mappedBy = "producto")
     private List<Comentario> comentarios;
 
-    @Column(name = "nombre_producto",nullable = false)
-    private String nombre_producto;
+    @Column(nullable = false)
+    private String nombre;
 
     @Column(name = "precio",nullable = false)
     private Float precio;

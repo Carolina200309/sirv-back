@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,9 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToOne(mappedBy = "user")
     private Lista_Compra lista_compra;
 
@@ -35,18 +39,23 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Comentario> comentarios;
 
-    @Column(nullable = false)
-    private String password;
-
     @Column(nullable = false, unique = true)
     private String nombre;
     private LocalDate date_registered;
     private String telephone;
     private String address;
 
+
+    @Enumerated(EnumType.ORDINAL)
+    private Tipo tipo=Tipo.DISTRIBUIDOR;
+
+    public enum Tipo {
+        DISTRIBUIDOR, ADMINISTRADOR
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singleton((GrantedAuthority) () -> "ROLE_"+tipo.name());
     }
 
     @Override
@@ -56,17 +65,17 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

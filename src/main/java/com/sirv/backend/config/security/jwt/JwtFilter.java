@@ -1,4 +1,4 @@
-package com.sirv.backend.config.jwt;
+package com.sirv.backend.config.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
