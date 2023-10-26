@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/product")
+@CrossOrigin("*")
 @AllArgsConstructor
 public class ProductController {
 

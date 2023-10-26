@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -77,5 +78,9 @@ public class UserService {
 
     public String registerUser(RegisterRequest request) throws EndUserException {
         return jwtUtils.generateAccessToken(createUser(request, false));
+    }
+
+    public Optional<User> getUserByToken(String token) {
+        return userRepository.findByNombre(jwtUtils.getSubject(token));
     }
 }
