@@ -19,7 +19,7 @@ public class ProductoService {
     private final ProductoRepository productoRepository;
 
     private ProductoDTO mapToDTO(Producto producto) {
-        return new ProductoDTO(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getDescripcion(), producto.getColor());
+        return new ProductoDTO(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getDescripcion(), producto.getCuidados(), producto.getTalla(),producto.getMaterial(),producto.getColor());
     }
 
     public List<ProductoDTO> getProductos() {
@@ -35,6 +35,9 @@ public class ProductoService {
         producto.setNombre(dto.getNombre());
         producto.setPrecio(dto.getPrecio());
         producto.setDescripcion(dto.getDescripcion());
+        producto.setCuidados(dto.getCuidados());
+        producto.setTalla(dto.getTalla());
+        producto.setMaterial(dto.getMaterial());
         producto.setColor(Producto.Color.valueOf(dto.getColor().toUpperCase()));
 
         productoRepository.save(producto);
@@ -50,6 +53,9 @@ public class ProductoService {
             producto.setNombre(dto.getNombre());
             producto.setPrecio(dto.getPrecio());
             producto.setDescripcion(dto.getDescripcion());
+            producto.setCuidados(dto.getCuidados());
+            producto.setTalla(dto.getTalla());
+            producto.setMaterial(dto.getMaterial());
             producto.setColor(Producto.Color.valueOf(dto.getColor().toUpperCase()));
 
             productoRepository.save(producto);

@@ -13,6 +13,9 @@ public class ProductoDTO {
     private String nombre;
     private float precio;
     private String descripcion;
+    private String cuidados;
+    private String talla;
+    private String Material;
 
     private Producto.Color color;
 

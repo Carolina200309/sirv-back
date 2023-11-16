@@ -36,6 +36,16 @@ public class Producto
     @Column(name = "descripcion",nullable = false)
     private String descripcion;
 
+    @Column(nullable = false)
+    private String cuidados;
+
+    @Column(nullable = false)
+    private String talla;
+
+    @Column(nullable = false)
+    private String Material;
+
+
     @Enumerated(EnumType.STRING)
     private Color color;
 
