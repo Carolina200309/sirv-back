@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,7 +39,31 @@ public class ProductoService {
 
         productoRepository.save(producto);
     }
+    public void updateProducto(Integer id, ProductoDTO dto) {
 
+        Optional<Producto> optionalProducto = productoRepository.findById(id);
+
+        if (optionalProducto.isPresent())
+        {
+            Producto producto = optionalProducto.get();
+
+            producto.setNombre(dto.getNombre());
+            producto.setPrecio(dto.getPrecio());
+            producto.setDescripcion(dto.getDescripcion());
+            producto.setColor(Producto.Color.valueOf(dto.getColor().toUpperCase()));
+
+            productoRepository.save(producto);
+        } else
+        {
+
+            throw new ProductoNotFoundException("No se encontró el producto con ID: " + id);
+        }
+    }
+    public class ProductoNotFoundException extends RuntimeException {
+        public ProductoNotFoundException(String message) {
+            super(message);
+        }
+    }
     public void deleteProducto(int id) {
         productoRepository.deleteById(id);
     }
