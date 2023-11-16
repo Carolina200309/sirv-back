@@ -15,4 +15,5 @@ public class UserDTO {
     private LocalDate date_registered;
     private String telephone;
     private String address;
+    private String direccion_residencia;
 }

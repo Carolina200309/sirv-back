@@ -36,12 +36,13 @@ public class UserService {
         user.setNombre(userDTO.getNombre());
         user.setAddress(userDTO.getAddress());
         user.setTelephone(userDTO.getTelephone());
+        user.setDireccion_residencia(userDTO.getDireccion_residencia());
 
         return user;
     }
 
     private UserDTO mapToDTO(User user) {
-        return  new UserDTO(user.getId(),user.getNombre(), user.getDate_registered(),user.getAddress(),user.getTelephone());
+        return  new UserDTO(user.getId(),user.getNombre(), user.getDate_registered(),user.getAddress(),user.getDireccion_residencia(),user.getTelephone());
     }
 
     public User createUser(RegisterRequest request, boolean isAdmin) throws EndUserException {
@@ -55,6 +56,7 @@ public class UserService {
         user.setTelephone(request.telephone());
         user.setDate_registered(LocalDate.now());
         user.setPassword(passwordEncoder.encode(request.password()));
+        user.setDireccion_residencia(request.direccion_residencia());
 
         if (isAdmin) user.setTipo(User.Tipo.ADMINISTRADOR);
 

@@ -44,6 +44,7 @@ public class User implements UserDetails {
     private LocalDate date_registered;
     private String telephone;
     private String address;
+    private String direccion_residencia;
 
 
     @Enumerated(EnumType.ORDINAL)
