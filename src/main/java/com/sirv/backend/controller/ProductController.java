@@ -30,6 +30,18 @@ public class ProductController {
             return ResponseEntity.internalServerError().build();
         }
     }
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody ProductoDTO productoDTO) {
+        try {
+            productoService.updateProducto(id, productoDTO);
+            return ResponseEntity.ok().build();
+        } catch (ProductoService.ProductoNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
     @GetMapping
     public List<ProductoDTO> getAll() {
