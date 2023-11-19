@@ -49,6 +49,8 @@ public class Producto
     @Enumerated(EnumType.STRING)
     private Color color;
 
+
+
     public enum Color {
         NEGRO, BLANCO, NARANJA, GRIS;
     }

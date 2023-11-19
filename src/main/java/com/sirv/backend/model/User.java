@@ -30,6 +30,12 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private Lista_Compra lista_compra;
 
+    public void setListaCompra(Lista_Compra lista_compra)
+    {
+        this.lista_compra = lista_compra;
+        lista_compra.setUser(this);
+    }
+
     @OneToMany(mappedBy = "user")
     private List<Factura> factura;
 
@@ -83,4 +89,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

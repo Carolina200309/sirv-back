@@ -34,25 +34,5 @@ public class Lista_Compra
             inverseJoinColumns = @JoinColumn(name = "id_producto"))
     private List<Producto> productos;
 
-
-    @Column(name = "id_producto",nullable = false)
-    private Integer id_producto;
-
-    @Column(name = "cantidad",nullable = false)
-    private Integer cantidad;
-
-    @Column(name = "precio_unidad",nullable = false)
-    private Float precio_unidad;
-
-    @Column(name = "subtotal",nullable = false)
-    private Float subtotal;
-
-    @Column(name = "fecha_compra",nullable = false)
-    private LocalDateTime fecha_compra;
-
-    @Column(name = "estado_compra",nullable = false)
-    private String estado_compra;
-
-
 }
 

@@ -16,9 +16,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProductoService {
 
-    private final ProductoRepository productoRepository;
+    public final ProductoRepository productoRepository;
 
-    private ProductoDTO mapToDTO(Producto producto) {
+    public ProductoDTO mapToDTO(Producto producto) {
         return new ProductoDTO(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getDescripcion(), producto.getCuidados(), producto.getTalla(),producto.getMaterial(),producto.getColor());
     }
 
@@ -30,7 +30,7 @@ public class ProductoService {
         return mapToDTO(productoRepository.findById(id).orElseThrow());
     }
 
-    public void createProducto(ProductoDTO dto) {
+    public Producto createProducto(ProductoDTO dto) {
         Producto producto = new Producto();
         producto.setNombre(dto.getNombre());
         producto.setPrecio(dto.getPrecio());
@@ -41,6 +41,7 @@ public class ProductoService {
         producto.setColor(Producto.Color.valueOf(dto.getColor().toUpperCase()));
 
         productoRepository.save(producto);
+        return producto;
     }
     public void updateProducto(Integer id, ProductoDTO dto) {
 
